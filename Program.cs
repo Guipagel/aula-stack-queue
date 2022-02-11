@@ -1,4 +1,5 @@
 ﻿using aula.ordenacao;
+using aula_stack_queue.calculadora;
 
 namespace aula
 {
@@ -6,7 +7,9 @@ namespace aula
     {
         static void Main(string[] args)
         {
-            Menu.Iniciar();
+            // Menu.Iniciar();
+
+            MenuCalculadora.Iniciar();
         }
     }
 }
