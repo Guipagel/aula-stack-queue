@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 // # Projeto Desafio "Paralelo"
 
@@ -26,56 +27,67 @@ namespace aula_stack_queue.calculadora
 {
     public static class MenuCalculadora
     {
+        public static void Iniciar()
+        {
 
-        public static void Iniciar(){
-            
             Console.WriteLine("Bem vindo a calculadora");
             Console.WriteLine("------------------------------------------------");
-            
-            Console.WriteLine("Digite a quantidade de operações: ");
-            int qtdOperacoes;
-            qtdOperacoes = Convert.ToInt32(Console.ReadLine());
-            
-            string stringOperacao = "";
 
-            for(var i = 0; i <= qtdOperacoes ; i++)
+            Console.Write("Digite a quantidade de operações: ");
+            var qtdOperacoes = Convert.ToInt32(Console.ReadLine());
+
+            List<int> numeros = new List<int>();
+            List<string> operacoes = new List<string>();
+
+            for (var i = 0; i <= qtdOperacoes; i++)
             {
-                Console.WriteLine($"Número: ");
-                var numero = Convert.ToInt32(Console.ReadLine());
+                Console.Write($"Número: ");
+                numeros.Add(Convert.ToInt32(Console.ReadLine()));
 
-                var operacao = "";
-                if(i != qtdOperacoes){
-                    Console.WriteLine($"Operacao: ");
-                    operacao = Console.ReadLine();
+                if (i != qtdOperacoes)
+                {
+                    Console.Write($"Operacao: ");
+                    operacoes.Add(Console.ReadLine());
                 }
-                
-                stringOperacao = string.Concat(stringOperacao, $"{numero}{operacao}");
             }
-            
-            SepararEmFuncoes(stringOperacao);
-            // System.Data.DataTable table = new System.Data.DataTable();
-            // var resultado =  Convert.ToDouble(table.Compute(stringOperacao, String.Empty));
-            
-            // System.Console.WriteLine(resultado);
+
+            foreach(string operacao in operacoes) 
+            {
+                if(operacao is "*")
+                {
+                    var indexOperacao = operacoes.IndexOf(operacao); // Pegar os dois index IndexOf(-1) +1
+                }
+            }
         }
 
-        public static void SepararEmFuncoes(string stringOperacao)
-        {
-            System.Console.WriteLine($"Tamanho string = {stringOperacao.Length}");
-            var stringOperacaoClone = Convert.ToString(stringOperacao);
-
-            for(var i = 0; i < stringOperacao.Length; i++)
-            {
-                Console.WriteLine("");
-                Console.WriteLine($"{stringOperacao[i]}");
-                
-                if(stringOperacao[i] == '*')
-                {
-                    var numeroAEsquerda = stringOperacao[i-1];
-                    var numeroADireita = stringOperacao[i+1];
-                    System.Console.WriteLine($"numeroAEsquerda: {numeroAEsquerda} // numeroADireita: {numeroADireita}");
-                }
-            }
-        } 
     }
 }
+
+// SepararEmFuncoes(stringGlobal);
+
+// public static void SepararEmFuncoes(string stringGlobal)
+// {
+//     for(var i = 0; i < stringGlobal.Length; i++)
+//     {                                            
+//         if(stringGlobal[i] == '*')
+//         {
+//             var numeroAEsquerda = Convert.ToInt16(stringGlobal[i-1]);
+//             var numeroADireita = Convert.ToInt16(stringGlobal[i+1]);
+
+//             Console.Write(numeroAEsquerda + "*" + numeroADireita);
+
+//             var resultado = Multiplicacao(numeroAEsquerda, numeroADireita);
+
+//             stringGlobal.Remove(i-1, 2);
+//         }
+//     }
+// } 
+
+// public static int Multiplicacao(int numeroAEsquerda, int numeroADireita) 
+// {
+//     return numeroAEsquerda * numeroADireita;
+// }
+
+// System.Data.DataTable table = new System.Data.DataTable();
+// var resultado =  Convert.ToDouble(table.Compute(stringGlobal, String.Empty));            
+// System.Console.WriteLine(resultado);
